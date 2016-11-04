@@ -1,0 +1,5 @@
+---
+- name: Install kapacitor from URL [Debian/Ubuntu]
+  apt:
+    deb: https://dl.influxdata.com/kapacitor/releases/kapacitor_{{ kapacitor_version }}_{{ kapacitor_arch }}.deb
+    state: present

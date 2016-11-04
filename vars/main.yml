@@ -1,0 +1,21 @@
+---
+kapacitor_version: 1.0.2
+kapacitor_influxdb_subscriptions_dbs:
+  - telegraf
+kapacitor_influxdb_subscriptions_retention_policies:
+  - default
+  - autogen
+
+# ticks
+kapacitor_tick_dir: "/var/lib/kapacitor/ticks"
+
+# tasks
+kapacitor_tasks:
+  - name: a
+    tick: "{{ kapacitor_tick_dir }}/a.tick"
+    type: stream
+    dbrp: telegraf.autogen
+  - name: b
+    tick: "{{ kapacitor_tick_dir }}/b.tick"
+    type: batch
+    dbrp: telegraf.autogen

@@ -1,0 +1,27 @@
+---
+- name: Create kapacitor.conf
+  template:
+    src: kapacitor.conf.j2
+    dest: /etc/kapacitor/kapacitor.conf
+    backup: true
+  notify:
+    - Restart kapacitor
+
+- name: Start and Enable kapacitor
+  service:
+    name: kapacitor
+    state: started
+    enabled: true
+
+- name: Create tick directory
+  file:
+    path: {{ kapacitor_tick_dir }}
+    state: directory
+    mode: 0755
+
+- name: Copy all tick files
+  copy:
+    src: {{ item }}
+    dest: {{ kapacitor_tick_dir }}/
+    with_fileglob:
+      - ticks/*.tick

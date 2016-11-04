@@ -1,0 +1,5 @@
+---
+- name: Install kapacitor from URL [RHEL/CentOS]
+  yum:
+    name: https://dl.influxdata.com/kapacitor/releases/kapacitor-{{kapacitor_version}}.{{kapacitor_arch}}.rpm
+    state: present
