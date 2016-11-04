@@ -1,0 +1,27 @@
+var timeRange = 5m
+var current = batch
+    |query('''
+            SELECT "load5" AS load
+            FROM "telegraf"."autogen".system
+            ''')
+        .every(timeRange)
+        .group('host')
+
+var yesterday = batch
+    |query('''
+            SELECT last("load5") as load
+            FROM "telegraf"."autogen".system
+            WHERE time < now() - 1d
+            '''}
+        .every(timeRange)
+        .group('host')
+
+current
+    |join(yesterday)
+        .as('last', 'yesterday')
+        .tolerance(timeRange)
+        .fill(0.0)
+        .eval(lambda: "last.load" / "yesterday.load").as("ratio")
+    |alert()
+        .warn(lambda: "ratio" > 2)
+        .log('/tmp/b.log')

@@ -1,1 +1,9 @@
 ---
+  - name: Define TICK task
+    # make sure it only run once
+    command: kapacitor define {{ item.name }} -tick {{ item.tick }} -type {{ item.type }} -dbrp {{ item.dbrp }}
+    args:
+      creates: "{{ kapacitor_tick_dir }}/.define.{{ item.name }}.placeholder"
+
+  - name: Enable TICK task
+    command: kapacitor enable {{ item.name }}

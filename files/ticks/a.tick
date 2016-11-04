@@ -1,0 +1,18 @@
+var a = stream
+    |from()
+        .measurement('cpu')
+        .groupBy('host')
+    |window()
+        .period(5m)
+        .every(5m)
+    |alert()
+        .id('{{ .Name }}')
+        .message('{{ .ID }}:{{ .Level }}')
+        .details('''
+<h1>{{ .ID }}</h1>
+<b>{{ .Message }}</b>
+<p>{{ index .Fields "usage_system" }}</p>
+''')
+        .warn(lambda: "usage_system" > 70)
+        .email('to@example.com')
+        .log('/tmp/a.log')
