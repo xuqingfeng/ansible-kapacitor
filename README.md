@@ -11,7 +11,7 @@
 
 ```yaml
 # vars/main.yml
-kapacitor_version: 1.0.2 # kapacitor version number
+kapacitor_version: 1.0.2 #kapacitor version number; get from https://www.influxdata.com/downloads/
 
 # default/main.yml
 # ...
@@ -26,6 +26,9 @@ kapacitor_version: 1.0.2 # kapacitor version number
     - xuqingfeng.kapacitor
 ```
 
+### Docker
+
+[https://github.com/influxdata/influxdata-docker/tree/master/kapacitor](https://github.com/influxdata/influxdata-docker/tree/master/kapacitor)
 
 
 
