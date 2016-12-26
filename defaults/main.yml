@@ -1,4 +1,5 @@
 ---
+kapacitor_version: 1.0.2
 kapacitor_arch: "{% if ansible_os_family == 'RedHat' %}x86_64{% elif ansible_os_family == 'Debian' %}amd64{% endif %}"
 
 # CONFIG
@@ -40,8 +41,7 @@ kapacitor_deadman_message: '{% raw %}{{ .ID }} is {{ if eq .Level \"OK\" }}alive
 kapacitor_influxdb_enabled: 'true'
 kapacitor_influxdb_default: 'true'
 kapacitor_influxdb_name: localhost
-kapacitor_influxdb_urls:
-  - 'http://localhost:8086'
+kapacitor_influxdb_urls: ['http://localhost:8086']
 kapacitor_influxdb_usernames:
 kapacitor_influxdb_password:
 kapacitor_influxdb_timeout: 0
@@ -58,11 +58,8 @@ kapacitor_influxdb_http_port: 0
 kapacitor_influxdb_udp_bind:
 kapacitor_influxdb_udp_buffer: 1000
 kapacitor_influxdb_udp_read_buffer: 0
-kapacitor_influxdb_subscriptions_dbs:
-  - telegraf
-kapacitor_influxdb_subscriptions_retention_policies:
-  - default
-  - autogen
+kapacitor_influxdb_subscriptions_dbs: ['telegraf']
+kapacitor_influxdb_subscriptions_retention_policies: ['default', 'autogen']
 kapacitor_influxdb_excluded_subscriptions_dbs:
 kapacitor_influxdb_excluded_subscriptions_retention_policies:
 
@@ -73,8 +70,7 @@ kapacitor_smtp_port: 25
 kapacitor_smtp_username:
 kapacitor_smtp_password:
 kapacitor_smtp_from: devops@example.com
-kapacitor_smtp_to:
-  - to@example.com
+kapacitor_smtp_to: ['to@example.com']
 kapacitor_smtp_no_verify: 'false'
 kapacitor_smtp_idle_timeout: 30s
 kapacitor_smtp_global: 'false'
@@ -83,12 +79,8 @@ kapacitor_smtp_state_changes_only: 'false'
 # [opsgenie]
 kapacitor_opsgenie_enabled: 'false'
 kapacitor_opsgenie_api_key:
-kapacitor_opsgenie_teams:
-  #- team1
-  #- team2
-kapacitor_opsgenie_recipients:
-  #- recipient1
-  #- recipient2
+kapacitor_opsgenie_teams: []
+kapacitor_opsgenie_recipients: []
 kapacitor_opsgenie_url: 'https://api.opsgenie.com/v1/json/alert'
 kapacitor_opsgenie_recovery_url: 'https://api.opsgenie.com/v1/json/alert/note'
 kapacitor_opsgenie_global: 'false'

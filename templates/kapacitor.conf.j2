@@ -69,7 +69,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   default = {{ kapacitor_influxdb_default }}
   name = "{{kapacitor_influxdb_name}}"
   #urls = ["http://localhost:8086"]
-  {% if kapacitor_influxdb_urls is defined and kapacitor_influxdb_urls != None %}
+  {% if kapacitor_influxdb_urls %}
   urls = ["{{ kapacitor_influxdb_urls | join('", "') }}"]
   {% endif %}
   username = "{{ kapacitor_influxdb_usernames }}"
@@ -138,9 +138,9 @@ data_dir = "{{ kapacitor_data_dir }}"
     # Example:
     # my_database = [ "default", "longterm" ]
     #telegraf = ["default", "autogen"]
-    {% if kapacitor_influxdb_subscriptions_dbs is defined and kapacitor_influxdb_subscriptions_dbs != None %}
+    {% if kapacitor_influxdb_subscriptions_dbs %}
     {% for db in kapacitor_influxdb_subscriptions_dbs %}
-    {% if kapacitor_influxdb_subscriptions_retention_policies is defined and kapacitor_influxdb_subscriptions_retention_policies != None %}
+    {% if kapacitor_influxdb_subscriptions_retention_policies %}
     db = ["{{ kapacitor_influxdb_subscriptions_retention_policies | join('", "') }}"]
     {% endif %}
     {% endfor %}
@@ -157,9 +157,9 @@ data_dir = "{{ kapacitor_data_dir }}"
     #
     # Example:
     # my_database = [ "default", "longterm" ]
-    {% if kapacitor_influxdb_excluded_subscriptions_dbs is defined and kapacitor_influxdb_excluded_subscriptions_dbs != None %}
+    {% if kapacitor_influxdb_excluded_subscriptions_dbs %}
     {% for db in kapacitor_influxdb_excluded_subscriptions_dbs %}
-    {% if kapacitor_influxdb_excluded_subscriptions_retention_policies is defined and kapacitor_influxdb_excluded_subscriptions_retention_policies != None %}
+    {% if kapacitor_influxdb_excluded_subscriptions_retention_policies %}
     db = ["{{ kapacitor_influxdb_subscriptions_retention_policies | join('", "') }}"]
     {% endif %}
     {% endfor %}
@@ -178,7 +178,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   from = "{{ kapacitor_smtp_from }}"
   # List of default To addresses.
   #to = ["to@example.com"]
-  {% if kapacitor_smtp_to is defined and kapacitor_smtp_to != None %}
+  {% if kapacitor_smtp_to %}
     to = ["{{ kapacitor_smtp_to | join('", "') }}"]
   {% endif %}
 
@@ -202,12 +202,12 @@ data_dir = "{{ kapacitor_data_dir }}"
     api-key = "{{ kapacitor_opsgenie_api_key }}"
     # Default OpsGenie teams, can be overridden per alert.
     # teams = ["team1", "team2"]
-    {% if kapacitor_opsgenie_teams is defined and kapacitor_opsgenie_teams != None %}
+    {% if kapacitor_opsgenie_teams %}
     teams = ["{{ kapacitor_opsgenie_teams | join('", "') }}"]
     {% endif %}
     # Default OpsGenie recipients, can be overridden per alert.
     # recipients = ["recipient1", "recipient2"]
-    {% if kapacitor_opsgenie_recipients is defined and kapacitor_opsgenie_recipients != None %}
+    {% if kapacitor_opsgenie_recipients %}
     recipients = ["{{ kapacitor_opsgenie_recipients | join('", "') }}"]
     {% endif %}
     # The OpsGenie API URL should not need to be changed.

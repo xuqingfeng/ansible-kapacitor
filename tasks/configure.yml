@@ -15,13 +15,13 @@
 
 - name: Create tick directory
   file:
-    path: {{ kapacitor_tick_dir }}
+    path: "{{ kapacitor_tick_dir }}"
     state: directory
     mode: 0755
 
 - name: Copy all tick files
   copy:
-    src: {{ item }}
-    dest: {{ kapacitor_tick_dir }}/
+    src: "{{ item }}"
+    dest: "{{ kapacitor_tick_dir }}/"
     with_fileglob:
       - ticks/*.tick
