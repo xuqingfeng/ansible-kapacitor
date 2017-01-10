@@ -23,7 +23,7 @@ kapacitor_version: 1.0.2 #kapacitor version number; get from https://www.influxd
 ```yaml
 - hosts: server
   roles:
-    - xuqingfeng.kapacitor
+    - role: xuqingfeng.kapacitor
 ```
 
 ### Docker
