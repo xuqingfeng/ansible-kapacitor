@@ -23,5 +23,5 @@
   copy:
     src: "{{ item }}"
     dest: "{{ kapacitor_tick_dir }}/"
-    with_fileglob:
+  with_fileglob:
       - ticks/*.tick

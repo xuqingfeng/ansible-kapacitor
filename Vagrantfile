@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "kapacitor" do | machine |
     machine.vm.hostname = "kapacitor"
-    machine.vm.network "private_network", ip: "10.0.233.1"
+    machine.vm.network "private_network", ip: "10.0.233.2"
 
     machine.vm.provision "ansible" do |ansible|
       ansible.sudo = true

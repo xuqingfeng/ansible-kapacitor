@@ -18,6 +18,8 @@ kapacitor_version: 1.0.2 #kapacitor version number; get from https://www.influxd
 ```
 ### Dependencies
 
+- influxDB
+
 ### Example Playbook
 
 ```yaml

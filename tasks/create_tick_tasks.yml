@@ -4,6 +4,8 @@
     command: kapacitor define {{ item.name }} -tick {{ item.tick }} -type {{ item.type }} -dbrp {{ item.dbrp }}
     args:
       creates: "{{ kapacitor_tick_dir }}/.define.{{ item.name }}.placeholder"
+    with_items: "{{ kapacitor_tasks }}"
 
   - name: Enable TICK task
     command: kapacitor enable {{ item.name }}
+    with_items: "{{ kapacitor_tasks }}"
